@@ -174,16 +174,15 @@ type Shopping = {
     owner: Character; // Le même "Character" qu'on a vu au chapitre précédent
     items: Array<unknown>;
 };
-
-type Potion = {
-    name: string;
-    effect: string;
-};
-
 type Equipment = {
     price: number;
     attack?: number;
     defense?: number;
+};
+type Potion = {
+    name: string;
+    effect: string;
+    price: number;
 };
 type Armory = Shopping & {
     items: Array<Equipment>;
