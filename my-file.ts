@@ -168,17 +168,32 @@ type Shop = {
 
 //Cela peut être pratique, mais cela est aussi très dangereux : contrairement à unknown  , TypeScript ne vérifie rien du tout sur les variables any  , et il peut donc laisser passer des bugs potentiels !
 function sayHi(target: any) { return `Hello ${target.firstName}`; }
-sayHi(123); // À cause de "any", TypeScript ne remonte aucune erreur ici !
+sayHello(123); // À cause de "any", TypeScript ne remonte aucune erreur ici !
+type Shopping = {
+    name: string;
+    owner: Character; // Le même "Character" qu'on a vu au chapitre précédent
+    items: Array<unknown>;
+};
 
+type Potion = {
+    name: string;
+    effect: string;
+};
 
 type Equipment = {
     price: number;
     attack?: number;
     defense?: number;
 };
-type Armory = Shop & {
+type Armory = Shopping & {
     items: Array<Equipment>;
 };
 
+type PetShop = Shopping & {
+    items: Array<Pet>; // Le même "Pet" qu'on a vu au chapitre précédent
+};
+type Apothecary = Shopping & {
+    items: Array<Potion>; // On admet qu'on a défini le type "Potion"
+};
 
 
