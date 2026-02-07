@@ -167,8 +167,10 @@ type Shop = {
 //Note : Tout comme unknown  , le rôle de any  est de servir de joker : il est utile lorsqu’on ne sait pas typer quelque chose. Si on ne sait pas quel type d’argument va recevoir notre fonction, any  permet de dire à TypeScript qu’il doit s’attendre à recevoir n’importe quel type.
 
 //Cela peut être pratique, mais cela est aussi très dangereux : contrairement à unknown  , TypeScript ne vérifie rien du tout sur les variables any  , et il peut donc laisser passer des bugs potentiels !
-function sayHi(target: any) { return `Hello ${target.firstName}`; }
-sayHello(123); // À cause de "any", TypeScript ne remonte aucune erreur ici !
+function sayHey(target: any) {
+    return `Hello ${target.firstName}`
+};
+sayHey(123); // À cause de "any", TypeScript ne remonte aucune erreur ici !
 type Shopping = {
     name: string;
     owner: Character; // Le même "Character" qu'on a vu au chapitre précédent
@@ -208,6 +210,16 @@ function createShop<ItemType>(name: string, owner: Character, items: Array<ItemT
     return { name, owner, items };
 }
 // Appel de la fonction générique
-const armory = createShop<Equipment>('My armory', { name: 'Bob', life: 100, attack: 1, defense: 2 }, []);
+const armory = createShop<Equipment>('My armory', { name: 'Bob', life: 100, attack: 1, defense: 2 }, []); 
+// Une fonction qui retourne simplement ce qu'elle reçoit en paramètre
+function returnParameter<T>(x: T): T {
+    return x;
+}
+// Ceci fonctionne, c'est ce que nous avons vu jusque-là
+const a = returnParameter<number>(1);
+// Mais puisque le type "T" est utilisé pour typer le paramètre "x",
+// il n'est pas nécessaire de le préciser en appelant la fonction.
+// Avec la ligne ci-dessous, TypeScript devine tout seul que "T" est "number" !
+const a2 = returnParameter(1);
 
 
