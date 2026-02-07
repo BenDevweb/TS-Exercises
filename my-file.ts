@@ -195,4 +195,19 @@ type Apothecary = Shopping & {
     items: Array<Potion>; // On admet qu'on a défini le type "Potion"
 };
 
+//On peut aussi utiliser les interfaces et les fonctions pour faire des generiques
+
+// Équivalent du type générique que nous venons de voir, avec une interface
+interface Shoppy<ItemType> {
+    name: string;
+    owner: Character;
+    items: Array<ItemType>;
+};
+// Une fonction générique
+function createShop<ItemType>(name: string, owner: Character, items: Array<ItemType>): Shoppy<ItemType> {
+    return { name, owner, items };
+}
+// Appel de la fonction générique
+const armory = createShop<Equipment>('My armory', { name: 'Bob', life: 100, attack: 1, defense: 2 }, []);
+
 
