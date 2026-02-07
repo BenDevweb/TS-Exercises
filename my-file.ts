@@ -171,4 +171,14 @@ function sayHi(target: any) { return `Hello ${target.firstName}`; }
 sayHi(123); // À cause de "any", TypeScript ne remonte aucune erreur ici !
 
 
+type Equipment = {
+    price: number;
+    attack?: number;
+    defense?: number;
+};
+type Armory = Shop & {
+    items: Array<Equipment>;
+};
+
+
 
