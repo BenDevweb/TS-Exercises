@@ -166,6 +166,9 @@ type Shop = {
 //Note : Sachez qu’il existe un type similaire, que je me dois d’évoquer ici : any  . La première chose à savoir sur cet autre type est très simple : je vous déconseille de l’utiliser !
 //Note : Tout comme unknown  , le rôle de any  est de servir de joker : il est utile lorsqu’on ne sait pas typer quelque chose. Si on ne sait pas quel type d’argument va recevoir notre fonction, any  permet de dire à TypeScript qu’il doit s’attendre à recevoir n’importe quel type.
 
+//Cela peut être pratique, mais cela est aussi très dangereux : contrairement à unknown  , TypeScript ne vérifie rien du tout sur les variables any  , et il peut donc laisser passer des bugs potentiels !
+function sayHi(target: any) { return `Hello ${target.firstName}`; }
+sayHi(123); // À cause de "any", TypeScript ne remonte aucune erreur ici !
 
 
 
